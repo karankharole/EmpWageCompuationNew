@@ -11,16 +11,16 @@ namespace EmpWageCompuationNew
         public const int IS_FULL_TIME = 1, IS_PART_TIME = 2;
 
         private int numOfCompany = 0;
-        private EmpWage[] companyEmpWageArray;
+        private CompanyEmpwage[] companyEmpWageArray;
 
         public EmpWageBuilderArray()
         {
-            this.companyEmpWageArray = new EmpWage[5];
+            this.companyEmpWageArray = new CompanyEmpwage[5];
         }
 
         public void addcompanyEmpWage(string company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth)
         {
-            companyEmpWageArray[this.numOfCompany] = new EmpWage(company, empRatePerHour, numOfWorkingDays, maxHoursPerMonth);
+            companyEmpWageArray[this.numOfCompany] = new CompanyEmpwage(company, empRatePerHour, numOfWorkingDays, maxHoursPerMonth);
             numOfCompany++;
         }
         public void computeEmpWage()
@@ -31,7 +31,7 @@ namespace EmpWageCompuationNew
                 Console.WriteLine(this.companyEmpWageArray[i].toString());
             }
         }
-        private int computeEmpWage(EmpWage companyEmpWage)
+        private int computeEmpWage(CompanyEmpwage companyEmpWage)
         {
             // Variables
             int empHrs = 0, totalEmpHrs = 0, totalWorkingDays = 0;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EmpWageCompuationNew
 {
-    internal class EmpWage
+    public class CompanyEmpwage
     {
         public string company;
         public int empRatePerHour;
@@ -14,7 +14,7 @@ namespace EmpWageCompuationNew
         public int maxHoursPerMonth;
         public int totalEmpWage;
 
-        public EmpWage(string company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth)
+        public CompanyEmpwage(string company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth)
         {
             this.company = company;
             this.empRatePerHour = empRatePerHour;
