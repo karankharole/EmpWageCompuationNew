@@ -12,10 +12,11 @@ namespace EmpWageCompuationNew
 
         private int numOfCompany = 0;
         private CompanyEmpwage[] companyEmpWageArray;
-
+        private List<CompanyEmpwage> companyEmpWageArrayList;
         public EmpWageBuilderArray()
         {
             this.companyEmpWageArray = new CompanyEmpwage[5];
+            companyEmpWageArrayList = new List<CompanyEmpwage>();
         }
 
         public void addcompanyEmpWage(string company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth)
