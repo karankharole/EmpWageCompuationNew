@@ -8,6 +8,7 @@ namespace EmpWageCompuationNew
 {
     internal class EmpWageBuilderArray
     {
+
         public const int IS_FULL_TIME = 1, IS_PART_TIME = 2;
 
         private int numOfCompany = 0;
@@ -21,14 +22,14 @@ namespace EmpWageCompuationNew
 
         public void addcompanyEmpWage(string company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth)
         {
-            companyEmpWageArray[this.numOfCompany] = new CompanyEmpwage(company, empRatePerHour, numOfWorkingDays, maxHoursPerMonth);
+            companyEmpWageArrayList.Add(new CompanyEmpwage(company, empRatePerHour, numOfWorkingDays, maxHoursPerMonth));
             numOfCompany++;
         }
         public void computeEmpWage()
         {
             for (int i = 0; i < numOfCompany; i++)
             {
-                companyEmpWageArray[i].setTotalEmpWage(this.computeEmpWage(this.companyEmpWageArray[i]));
+                companyEmpWageArrayList[i].setTotalEmpWage(this.computeEmpWage(this.companyEmpWageArrayList[i]));
                 Console.WriteLine(this.companyEmpWageArray[i].toString());
             }
         }
@@ -56,6 +57,8 @@ namespace EmpWageCompuationNew
                 }
                 totalEmpHrs += empHrs;
                 Console.WriteLine("Days : " + totalWorkingDays + "Emp Hrs : " + empHrs);
+                int dailyWage = empHrs * companyEmpWage.empRatePerHour;
+                Console.WriteLine("Daily Wage of Employee Is: " + dailyWage);
             }
             return totalEmpHrs * companyEmpWage.empRatePerHour;
         }

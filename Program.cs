@@ -32,8 +32,7 @@ namespace EmpWageCompuationNew
             Console.WriteLine("Enter Maximum Hours Per Month: ");
             int maxWorkingHoursPerMonth = Convert.ToInt32(Console.ReadLine());
 
-            return new
-                CompanyEmpwage(company, empRatePerHour, numOfWorkingDays, maxWorkingHoursPerMonth);
+            return new CompanyEmpwage(company, empRatePerHour, numOfWorkingDays, maxWorkingHoursPerMonth);
             {
                 company = company;
                 empRatePerHour = empRatePerHour;
