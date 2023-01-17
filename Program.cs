@@ -6,7 +6,7 @@ namespace EmpWageCompuationNew
     {
         static void Main(string[] args)
         {
-            EmpWageBuilderArray empWageBuilder = new EmpWageBuilderArray();
+            EmpWageBuilder empWageBuilder = new EmpWageBuilder();
             Console.WriteLine("Enter i to Enter Company Details or otherwise enter any key :");
             var input = Console.ReadLine();
             while (input == "i")
@@ -17,6 +17,19 @@ namespace EmpWageCompuationNew
                 input = Console.ReadLine();
             }
             empWageBuilder.computeEmpWage();
+            Console.WriteLine("Enter g to get Company Details : ");
+            var name = Console.ReadLine();
+            while (name == "g")
+            {
+                var detail = empWageBuilder.companyDetailsByName(Console.ReadLine());
+                Console.WriteLine("Comapny Name : " + detail.company);
+                Console.WriteLine("Employee Rate Per Hour : " + detail.empRatePerHour);
+                Console.WriteLine("Number Of Working Days : " + detail.numOfWorkingDays);
+                Console.WriteLine("Maximum Hours Per Month : " + detail.maxHoursPerMonth);
+
+                Console.WriteLine("Enter g to get Company Details : ");
+                name = Console.ReadLine();
+            }
         }
         public static CompanyEmpwage UserInput()
         {

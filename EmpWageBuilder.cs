@@ -6,32 +6,36 @@ using System.Threading.Tasks;
 
 namespace EmpWageCompuationNew
 {
-    internal class EmpWageBuilderArray
+    public class EmpWageBuilder : IComputeEmpWage
     {
-
         public const int IS_FULL_TIME = 1, IS_PART_TIME = 2;
 
-        private int numOfCompany = 0;
-        private CompanyEmpwage[] companyEmpWageArray;
-        private List<CompanyEmpwage> companyEmpWageArrayList;
-        public EmpWageBuilderArray()
+        public List<CompanyEmpwage> companyEmpWageList;
+        private Dictionary<string, CompanyEmpwage> empWageDictionary;
+
+        public EmpWageBuilder()
         {
-            this.companyEmpWageArray = new CompanyEmpwage[5];
-            companyEmpWageArrayList = new List<CompanyEmpwage>();
+            this.companyEmpWageList = new List<CompanyEmpwage>();
+            this.empWageDictionary = new Dictionary<string, CompanyEmpwage>();
         }
 
         public void addcompanyEmpWage(string company, int empRatePerHour, int numOfWorkingDays, int maxHoursPerMonth)
         {
-            companyEmpWageArrayList.Add(new CompanyEmpwage(company, empRatePerHour, numOfWorkingDays, maxHoursPerMonth));
-            numOfCompany++;
+            CompanyEmpwage companyEmpwage = new CompanyEmpwage(company, empRatePerHour, numOfWorkingDays, maxHoursPerMonth);
+            this.companyEmpWageList.Add(companyEmpwage);
+            this.empWageDictionary.Add(company, companyEmpwage);
         }
         public void computeEmpWage()
         {
-            for (int i = 0; i < numOfCompany; i++)
+            foreach (CompanyEmpwage companyEmpWage in this.companyEmpWageList)
             {
-                companyEmpWageArrayList[i].setTotalEmpWage(this.computeEmpWage(this.companyEmpWageArrayList[i]));
-                Console.WriteLine(this.companyEmpWageArray[i].toString());
+                companyEmpWage.setTotalEmpWage(this.computeEmpWage(companyEmpWage));
+                Console.WriteLine(companyEmpWage.toString());
             }
+        }
+        public CompanyEmpwage companyDetailsByName(string companyName)
+        {
+            return this.companyEmpWageList.Find(X => X.company == companyName);
         }
         private int computeEmpWage(CompanyEmpwage companyEmpWage)
         {
@@ -61,6 +65,26 @@ namespace EmpWageCompuationNew
                 Console.WriteLine("Daily Wage of Employee Is: " + dailyWage);
             }
             return totalEmpHrs * companyEmpWage.empRatePerHour;
+        }
+
+        public int getTotalWage(string company)
+        {
+            return this.empWageDictionary[company].totalEmpWage;
+        }
+
+        void IComputeEmpWage.addcompyEmpWage(string Company, int empRatePerHour, int numOfWorkingDays, int maxHourPerMonth)
+        {
+            throw new NotImplementedException();
+        }
+
+        void IComputeEmpWage.computeEmpWage()
+        {
+            throw new NotImplementedException();
+        }
+
+        void IComputeEmpWage.getTotalWage(string company)
+        {
+            throw new NotImplementedException();
         }
     }
 }
